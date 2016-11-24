@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>导航条</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#wrap{
+			margin: 0 auto;
+			width: 600px;
+			height: 100px;
+			position: relative;
+		}
+		ul{
+			list-style-type: none;
+			overflow: hidden;
+			position: absolute;
+		}
+		li{
+			width: 98px;
+			height:68px;
+			background-color: pink;
+			border: 1px yellow solid;
+			float: left;
+			font-size: 30px;
+			text-align: center;
+			line-height: 68px; 
+			cursor: pointer;
+		}
+		/*li:hover{
+			background-color: gray;
+		}*/
+		#sliced{
+			width: 98px;
+			height: 28px;
+			border: 1px blue solid;
+			background-color: purple;
+			position: absolute;
+			top: 70px;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<ul id="uli">
+			<li>home</li>
+			<li>nav</li>
+			<li>new</li>
+			<li>movie</li>
+			<li>music</li>
+			<li>cctv</li>
+		</ul>
+
+		<div id="sliced"></div>
+	</div>
+</body>
+<script src="tween.js"></script>
+<script type="text/javascript">
+	var lis=document.getElementById('uli').getElementsByTagName('li');
+
+
+	var sliced=document.getElementById("sliced");
+	var timer;
+
+for (var i = 0; i < lis.length; i++) {
+	lis[i].index=i;
+	lis[i].onmouseover=function(){
+		for (var i = 0; i < lis.length; i++) {
+			lis[i].style.backgroundColor="";
+		}
+	this.style.backgroundColor="gray";
+
+	var t=0;
+	var d=30;
+	var begin=sliced.offsetLeft;
+	var end=sliced.offsetWidth*this.index;
+	var change=end-begin;
+	clearInterval(timer);
+	timer=setInterval(function(){
+	t++;
+	if(t>=d){
+		clearInterval(timer);
+	}
+	sliced.style.left=Tween.Bounce.easeOut(t,begin,change,d)+"px";
+
+},30)
+}
+
+
+	
+	
+	
+}
+
+
+
+for (var i = 0; i < lis.length; i++) {
+	lis[i].index=i;
+	lis[i].onmouseout=function(){
+		for (var i = 0; i < lis.length; i++) {
+			lis[i].style.backgroundColor="";
+		}
+	this.style.backgroundColor="";
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
